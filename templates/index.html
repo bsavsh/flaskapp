@@ -4,7 +4,13 @@
         <title>My Web Page</title>
     </head>
     <body>
+        <h1>{{headline}}</h1>
         <h1>Hello there</h1>
         <h2>Hello but this time text should be smaller</h2>
+        {% if new_year %}
+            <h1>Yes! Happy New Year!</h1>
+        {% else %}
+            <h1>No, it's not a New Year!</h1>
+        {% endif %}
     </body>
 </html>

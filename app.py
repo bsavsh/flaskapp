@@ -1,10 +1,13 @@
 import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
+from flask_session import Session
 
 app = Flask(__name__)
 
-notes = []
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 @app.route("/")
 def index():
@@ -34,8 +37,10 @@ def getForm():
 
 @app.route("/note", methods=["POST", "GET"])
 def note():
+    if session.get("notes") is None:
+        session["notes"] = []
     if request.method == "POST":
         note = request.form.get("note")
-        notes.append(note)
+        session["notes"].append(note)
 
-    return render_template("note.html", notes=notes)
+    return render_template("note.html", notes=session["notes"])

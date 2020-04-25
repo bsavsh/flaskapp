@@ -4,6 +4,8 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+notes = []
+
 @app.route("/")
 def index():
     now = datetime.datetime.now()
@@ -29,3 +31,11 @@ def helloFromForm():
 @app.route("/form")
 def getForm():
     return render_template("form.html")
+
+@app.route("/note", methods=["POST", "GET"])
+def note():
+    if request.method == "POST":
+        note = request.form.get("note")
+        notes.append(note)
+
+    return render_template("note.html", notes=notes)

@@ -1,6 +1,6 @@
 import datetime
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -20,3 +20,12 @@ def hello(name):
 def loopinjinja():
     names = ["Alice", "Bob", "Charlie"]
     return render_template("loop.html", names=names)
+
+@app.route("/hello", methods=["POST"])
+def helloFromForm():
+    name = request.form.get("name")
+    return render_template("hello.html", name=name)
+
+@app.route("/form")
+def getForm():
+    return render_template("form.html")

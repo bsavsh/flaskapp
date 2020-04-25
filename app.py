@@ -17,6 +17,6 @@ def hello(name):
     return f"Hello, {name}"
 
 @app.route("/loopinjinja")
-def loop():
+def loopinjinja():
     names = ["Alice", "Bob", "Charlie"]
     return render_template("loop.html", names=names)

@@ -15,3 +15,8 @@ def index():
 def hello(name):
     name = name.capitalize()
     return f"Hello, {name}"
+
+@app.route("/loopinjinja")
+def loop():
+    names = ["Alice", "Bob", "Charlie"]
+    return render_template("loop.html", names=names)

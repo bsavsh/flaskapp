@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Web Page</title>
-    </head>
-    <body>
-        {% for name in names %}
+{% extends "layout.html" %}
+{% block heading %}
+    <h1>Headline</h1>
+{% endblock %}
+
+{% block body %}
+    {% for name in names %}
             <h1>{{ name }}</h1>
         {% endfor %}
 
         <a href="{{ url_for('index') }}">See index example</a>
-    </body>
-</html>
+{% endblock %}
